@@ -1,0 +1,85 @@
+<div class="container d-flex justify-content-center mt-3">
+  <div class="col-lg-5 col-md-8 col-sm-10">
+    <h1 class="title">Área Administrativa</h1>
+    <div class="card shadow round">
+      <div class="card-header d-flex justify-content-center">
+        <span class="icon">
+          <span class="text-center">Login</span><i class="bi bi-key"></i>
+        </span>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="formLogin">
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite o Login"
+              formControlName="name"
+            />
+            <div
+              *ngIf="
+                formLogin.controls['name'].invalid &&
+                (formLogin.controls['name'].dirty ||
+                  formLogin.controls['name'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="formLogin.controls['name'].errors">
+                Login inválido.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Digite a senha"
+              formControlName="password"
+            />
+            <div
+              *ngIf="
+                formLogin.controls['password'].invalid &&
+                (formLogin.controls['password'].dirty ||
+                  formLogin.controls['password'].touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="formLogin.controls['password'].errors">
+                Senha inválida.
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              *ngIf="!ligarSpinner"
+              type="button"
+              class="btn env"
+              [disabled]="!formLogin.valid"
+              (click)="submitForm()"
+            >
+              Entrar
+            </button>
+
+            <button *ngIf="ligarSpinner" class="btn env" type="button" disabled>
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger" [routerLink]="['']">
+              <i class="bi bi-house"></i> Voltar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

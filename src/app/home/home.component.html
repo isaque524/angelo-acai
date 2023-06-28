@@ -1,0 +1,171 @@
+<div *ngIf="!LigaAcordion" class="container mt-3">
+  <div class="row">
+    <form>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Procure aqui  um item por tipo"
+          (input)="search($event)"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+    <div *ngFor="let itemT of tiposList" class="col" [hidden]="!itemT.estoque">
+      <div class="card" style="width: 18rem">
+        <img src="{{ itemT.url_imagem }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ itemT.tipo }}</h5>
+          <p class="card-text">
+            <strong>Tamanho:</strong> {{ itemT.capacidade }}ml
+          </p>
+          <div class="d-flex justify-content-around">
+            <h3>{{ itemT.preco }}R$</h3>
+            <button class="btn btn-primary add" (click)="montarCopo(itemT)">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="LigaAcordion && spinner"
+  class="accordion mt-3"
+  id="accordionExample "
+>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="btn btn-outline-success" (click)="montarCarrinho()">
+        Enviar pedido
+      </button>
+    </div>
+  </nav>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Click aqui para escolher os Sabores
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div class="container">
+          <h3>
+            Você tem direito a {{ itemCarrinho.getItem.qtd_sabores }} sabores
+          </h3>
+          <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+            <div
+              *ngFor="let item of SaborList; let i = index"
+              [hidden]="!item.estoque"
+              class="col"
+            >
+              <div class="card" style="width: 18rem">
+                <img src="{{ item.url_imagem }}" class="card-img-top" alt="" />
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.nome }} {{ item.tipo }}</h5>
+                  <div class="">
+                    <button
+                      *ngIf="!item.clicado"
+                      class="btn btn-primary"
+                      (click)="adicionarSorvete(item)"
+                    >
+                      Adicionar
+                    </button>
+                    <button
+                      *ngIf="item.clicado"
+                      class="btn btn-danger"
+                      (click)="removerSorvete(item)"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        Click aqui para escolher os adicionais
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div class="container">
+          <h3>
+            Você tem direito a
+            {{ itemCarrinho.getItem.qtd_adicionais }} adicionais
+          </h3>
+
+          <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
+            <div *ngFor="let item of adicionaisList; let i = index" class="col">
+              <div class="card" style="width: 18rem">
+                <img src="{{ item.imagem }}" class="card-img-top" alt="" />
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.nome }}</h5>
+                  <div class="">
+                    <button
+                      *ngIf="!item.clicado"
+                      class="btn btn-primary"
+                      (click)="adicionarComplementos(item)"
+                    >
+                      Adicionar
+                    </button>
+                    <button
+                      *ngIf="item.clicado"
+                      class="btn btn-danger"
+                      (click)="removerComplementos(item)"
+                    >
+                      Remover
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!spinner">
+  <h1 class="text-center text-primary">
+    Por favor aguarde enquanto preparamos as tabelas
+  </h1>
+  <app-spinner></app-spinner>
+</div>

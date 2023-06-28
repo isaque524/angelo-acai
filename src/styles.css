@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+#content {
+  transform: scale(0.80);
+  transform-origin: 0 0;
+}
+
+
+  body{
+    zoom: 0.80;
+  font-family: Arial, Helvetica, sans-serif;  background-image:linear-gradient(to right, #d3cce3 0%, #e9e4f0 100%); 
+  }
+
+
+
+/*    .accordion {
+    font-size: 18px;
+    }
+
+    .accordion-button{
+      font-size: 25px;
+
+    }
+
+    .modal{
+      font-size: 18px;
+    } */
+
+
+
+
+  FOOTER  { height: 20px; background-color: #333333; }
+
+  footer{
+    position: fixed; left: 0; bottom: 0; width: 100%;
+  }
+

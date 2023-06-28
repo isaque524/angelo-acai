@@ -1,0 +1,270 @@
+<div *ngIf="spinner" class="accordion" id="accordionExample1">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <button
+        class="btn btn-outline-success"
+        data-bs-toggle="modal"
+        data-bs-target="#tipoModal"
+        (click)="onAddClick()"
+      >
+        Adicionar um novo Sabor
+      </button>
+
+      <button class="btn btn-outline-primary" [routerLink]="['/adm']">
+        voltar a tela anterior
+      </button>
+
+      <button class="btn btn-outline-danger" (click)="sair()">Sair</button>
+    </div>
+  </nav>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Sorvete
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div class="container mt-2">
+          <table class="table table-hover table-striped table-responsive">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo</th>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of saborSorvete">
+                <td>{{ item._id }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.estoque }}</td>
+                <td>
+                  <button
+                    (click)="edit(item._id, item)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#tipoModal"
+                    class="btn btn-sm btn-warning text-white mx-2"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    (click)="deletarTipo(item._id)"
+                    class="btn btn-sm btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        Açai
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div class="container mt-2">
+          <table class="table table-hover table-striped table-responsive">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo</th>
+                <th>Nome</th>
+                <th>Estoque</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of saborAcai">
+                <td>{{ item._id }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.estoque }}</td>
+                <td>
+                  <button
+                    (click)="edit(item._id, item)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#tipoModal"
+                    class="btn btn-sm btn-warning text-white mx-2"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    (click)="deletarTipo(item._id)"
+                    class="btn btn-sm btn-danger"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  *ngIf="spinner"
+  class="modal fade"
+  id="tipoModal"
+  tabindex="-1"
+  aria-labelledby="tipoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tipoModalLabel">Tipo Informação</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="acaiForm">
+          <div class="mb-3">
+            <label class="form-label">Tipo</label>
+            <input
+              *ngIf="ativarAddBtn === false"
+              placeholder="sorvete ou açai"
+              class="form-control"
+              type="text"
+              formControlName="tipo"
+              readonly
+            />
+
+            <select
+              *ngIf="ativarAddBtn === true"
+              class="form-control"
+              type="text"
+              formControlName="tipo"
+            >
+              <option selected disabled value="">
+                --Please choose an option--
+              </option>
+              <option value="açaí">Açaí</option>
+              <option value="sorvete">sorvete</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Sabor</label>
+            <input
+              *ngIf="ativarAddBtn === false"
+              type="text"
+              class="form-control"
+              placeholder="nome"
+              formControlName="nome"
+              readonly
+            />
+            <input
+              *ngIf="ativarAddBtn === true"
+              type="text"
+              class="form-control"
+              placeholder="nome"
+              formControlName="nome"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Estoque</label>
+            <input
+              placeholder="Digite o estoque"
+              type="checkbox"
+              formControlName="estoque"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Url_imagem</label>
+            <input
+              placeholder="Digite a url_imagem"
+              type="text"
+              class="form-control"
+              formControlName="url_imagem"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          id="close"
+          (click)="reset()"
+        >
+          Sair
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="alterarTipo()"
+          *ngIf="ativarUpdateBtn"
+        >
+          Atualizar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success"
+          [disabled]="!this.acaiForm.valid"
+          (click)="enviarTipo()"
+          *ngIf="ativarAddBtn"
+        >
+          Adicionar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!spinner">
+  <h1 class="text-center text-primary">
+    Por favor aguarde enquanto preparamos as tabelas
+  </h1>
+  <app-spinner></app-spinner>
+</div>

@@ -1,0 +1,136 @@
+<!-- Tela do carrinho com tabela preenchida -->
+<ng-container *ngIf="products.length != 0">
+  <div class="container mt-3">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-hover table-striped table-responsive">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Imagem</th>
+              <th>Preço</th>
+              <th>Sabor</th>
+              <th>Adicionais</th>
+              <th>Total</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.products; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.tipo }} de {{ item.capacidade }}ml</td>
+              <td>
+                <img style="width: 120px" src="{{ item.url_imagem }}" alt="" />
+              </td>
+              <td style="width: 12%">{{ item.preco }}</td>
+              <td>
+                <div *ngFor="let sabor of item.sabores">
+                  <span style="width: 12%"
+                    >{{ sabor.tipo }} {{ sabor.nome }}</span
+                  >
+                </div>
+              </td>
+
+              <td>
+                <div *ngFor="let adicional of item.adicionais">
+                  <span style="width: 12%">{{ adicional.nome }}</span>
+                </div>
+              </td>
+
+              <td style="width: 12%">{{ item.total }}</td>
+              <td>
+                <button (click)="removeItem(item)" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td>
+                <button (click)="LimparCarrinho()" class="btn btn-danger">
+                  Reiniciar carrinho
+                </button>
+              </td>
+              <td>
+                <button routerLink="/products" class="btn btn-primary">
+                  Voltar
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-success" (click)="Dowload()">
+                  Enviar
+                </button>
+              </td>
+              <td>
+                <strong>Total : ${{ grandTotal }}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Tela do Carrinho com tabela vazia -->
+<ng-container *ngIf="products.length == 0">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">Meu carrinho</h5>
+    </div>
+    <div class="center">
+      <img src="assets/icone-de-sorvete_340607-63 (1).png" alt="" />
+      <h4>Seu carrinho esta vazio!</h4>
+      <h6>Click abaixo para voltar ao menu de compras</h6>
+      <button routerLink="/products" class="btn btn-primary">Voltar</button>
+    </div>
+  </div>
+</ng-container>
+
+<!-- Clone da tabela de pedidos para o PDF -->
+<ng-container>
+  <div [hidden]="this.hidden == false" class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table id="pedido" class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Sabor</th>
+              <th>Adicionais</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.products; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.tipo }} de {{ item.capacidade }}ml</td>
+              <td>
+                <div *ngFor="let sabor of item.sabores">
+                  <span style="width: 12%"
+                    >{{ sabor.tipo }} {{ sabor.nome }}</span
+                  >
+                </div>
+              </td>
+
+              <td>
+                <div *ngFor="let adicional of item.adicionais">
+                  <span style="width: 12%">{{ adicional.nome }}</span>
+                </div>
+              </td>
+
+              <td style="width: 12%">{{ item.total }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Total : ${{ grandTotal }}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>

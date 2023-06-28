@@ -1,0 +1,33 @@
+.icon {
+  font-size: 3.5rem;
+  color: #a770ef;
+}
+
+.card-body form .btn.env {
+  font-size: 20px;
+  background-image: linear-gradient(to right, #a770ef 0%, #cf8bf3 33%, #fdb99b 100%);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.alert-danger {
+  margin-top: 10px;
+}

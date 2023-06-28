@@ -1,0 +1,18 @@
+<header>
+  <div class="navbar navbar-dark shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <a [routerLink]="['/login']"
+        ><img
+          src="assets/icone-de-sorvete_340607-63 (1).png"
+          alt="Logo"
+          style="width: 45px"
+      /></a>
+      <strong style="font-size: 30px">Angelos Açai e Sorvete</strong>
+    </div>
+
+    <button routerLink="cart" class="btn">
+      <i style="font-size: 30px" class="bi bi-truck"></i>
+      <div style="font-size: 10px" class="badge bg-danger">{{ totalItem }}</div>
+    </button>
+  </div>
+</header>
