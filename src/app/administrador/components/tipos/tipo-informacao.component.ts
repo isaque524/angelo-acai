@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AcaiSorveteService } from 'src/app/services/tipos.service';
-import { LoginService } from '../../login/login.service';
+import { LoginService } from '../../../services/login.service';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SaboresService } from 'src/app/services/sabores.service';
-import { LoginService } from '../../login/login.service';
+import { LoginService } from '../../../services/login.service';
 import Swal from 'sweetalert2';
 import { Validators } from '@angular/forms';
 
@@ -24,7 +24,6 @@ export class SaboresComponent {
     private api: SaboresService,
     private fb: FormBuilder,
     private loginService: LoginService
-    
   ) {
     setTimeout(() => {
       this.criarTipo();

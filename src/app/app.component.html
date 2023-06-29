@@ -1,4 +1,18 @@
 <app-header *ngIf="headerVisivel"></app-header>
+<header *ngIf="!headerVisivel">
+  <div class="navbar navbar-dark shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <img
+        src="assets/icone-de-sorvete_340607-63 (1).png"
+        alt="Logo"
+        style="width: 45px"
+      />
+      <strong style="font-size: 30px; color: #b688f2"
+        >Angelos Açai e Sorvete</strong
+      >
+    </div>
+  </div>
+</header>
 <main>
   <router-outlet></router-outlet>
   <!-- mudanças de rota acontece aqui -->

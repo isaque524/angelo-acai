@@ -15,8 +15,14 @@
 
   body{
     zoom: 0.80;
-  font-family: Arial, Helvetica, sans-serif;  background-image:linear-gradient(to right, #d3cce3 0%, #e9e4f0 100%); 
+  font-family: Arial, Helvetica, sans-serif;  background-image:linear-gradient(to right, #d3cce3 0%, #e9e4f0 100%);
   }
+
+  header{
+    background-image:linear-gradient(to right,#e9e4f0 0%,#d3cce3 100%);
+  }
+
+
 
 
 

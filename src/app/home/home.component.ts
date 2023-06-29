@@ -9,6 +9,7 @@ import { SaboresService } from '../services/sabores.service';
 import { AcaiSorveteService } from '../services/tipos.service';
 import { Listadicional } from '../model/adicional';
 import { PegarSabor } from '../model/sabores';
+import { EventEmitterService } from '../services/event-emitir.service';
 
 @Component({
   selector: 'app-home',
@@ -27,20 +28,19 @@ export class HomeComponent {
   public estoque: boolean = false;
   public spinner: boolean = false;
 
-  /*  foods: foods[] = []; */
-  /* copo: boolean = false; */
   constructor(
     private tipo: AcaiSorveteService,
     private sabor: SaboresService,
     private adicionalComp: AdicionaisService,
     private cartService: CartService
-  ) {}
+  ) {
+    EventEmitterService.get('Amostra header').emit('');
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.spinner = true;
     }, 4000);
-    /* this.foods = this.fs.getAll(); */
     this.tipo.getAcaiSorveteTodosTipos().subscribe((res) => {
       this.tiposList = res.resultados;
       this.tiposList.forEach((a: any) => {

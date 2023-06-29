@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../services/login.service';
 import Swal from 'sweetalert2';
 import { EventEmitterService } from 'src/app/services/event-emitir.service';
 
@@ -10,7 +10,7 @@ import { EventEmitterService } from 'src/app/services/event-emitir.service';
 })
 export class AdmComponent {
   constructor(private loginService: LoginService) {
-    EventEmitterService.get('esconder header').emit('');
+    EventEmitterService.get('Esconder header').emit('');
   }
 
   public sair() {
