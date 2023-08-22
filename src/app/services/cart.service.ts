@@ -35,12 +35,13 @@ export class CartService {
   }
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
+      if (product.nome === a.nome && product.tipo === a.tipo) {
         this.cartItemList.splice(index, 1);
       }
     });
     this.tiposList.next(this.cartItemList);
   }
+
   removeAllCart() {
     this.cartItemList = [];
     this.tiposList.next(this.cartItemList);
