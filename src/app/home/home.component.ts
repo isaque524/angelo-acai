@@ -178,4 +178,9 @@ export class HomeComponent {
       return tipos._id.toLowerCase().includes(value);
     });
   }
+
+  reload(){
+    window.location.reload()
+  }
+
 }
