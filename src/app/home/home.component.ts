@@ -179,8 +179,7 @@ export class HomeComponent {
     });
   }
 
-  reload(){
-    window.location.reload()
+  reload() {
+    this.LigaAcordion = false;
   }
-
 }

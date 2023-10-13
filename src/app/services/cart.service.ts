@@ -1,3 +1,4 @@
+import { Sabores } from './../model/sabores';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PegarSabor } from '../model/sabores';
@@ -34,10 +35,12 @@ export class CartService {
     return grandTotal;
   }
   removeCartItem(product: any) {
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.nome === a.nome && product.tipo === a.tipo) {
-        this.cartItemList.splice(index, 1);
-      }
+    this.cartItemList = this.cartItemList.filter((a: any) => {
+      return (
+        product.sabores !== a.sabores ||
+        product.tipo !== a.tipo ||
+        product.adicionais !== a.adicionais
+      );
     });
     this.tiposList.next(this.cartItemList);
   }
