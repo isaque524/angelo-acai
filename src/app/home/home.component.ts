@@ -38,6 +38,10 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
+    this.iniciar();
+  }
+
+  iniciar() {
     setTimeout(() => {
       this.spinner = true;
     }, 4000);
@@ -47,7 +51,7 @@ export class HomeComponent {
         Object.assign(a, { quantidade: 1, total: a.preco });
       });
       this.tiposListclone = this.tiposList;
-      ('');
+      this.LigaAcordion = false;
     });
   }
 
@@ -166,7 +170,7 @@ export class HomeComponent {
     } else {
       this.cartService.addtoCart(this.itemCarrinho);
       Swal.fire('Enviado!', '', 'success');
-      this.LigaAcordion = false;
+      this.iniciar();
     }
   }
 
@@ -180,6 +184,6 @@ export class HomeComponent {
   }
 
   reload() {
-    this.LigaAcordion = false;
+    this.iniciar();
   }
 }
